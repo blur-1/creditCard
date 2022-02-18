@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="card-body">
+        <h3 class="titulo mb-3">{{titulo}}
+            <div *ngIf="loading" class="spinner-border text-success float-end" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </h3>
+
+            <form [formGroup]="form"(ngSubmit)="registrarTarjeta()">
+                <div class="input-group input-group-lg mb-3">
+                    <span class="input-group-text" id="">
+                        <i class="fa-solid fa-circle-user" 
+                        [class.green-icon]="this.form.get('titular')?.valid"
+                        [class.red-icon]="this.form.get('titular')?.invalid && this.form.get('titular')?.touched"></i>
+                    </span>
+                    <input type="text" formControlName="titular" class="form-control" placeholder="Titular">
+                </div>
+                <div class="input-group input-group-lg mb-3">
+                    <span class="input-group-text" id="">
+                        <i class="fa-solid fa-credit-card" 
+                        [class.green-icon]="this.form.get('numeroTarjeta')?.valid"
+                        [class.red-icon]="this.form.get('numeroTarjeta')?.invalid && this.form.get('numeroTarjeta')?.touched"></i>
+                    </span>
+                    <input type="text" formControlName="numeroTarjeta" maxlength="16" class="form-control" placeholder="Numero Tarjeta">
+                </div>
+               
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" id="">
+                                <i class="fa-solid fa-calendar-days" 
+                                [class.green-icon]="this.form.get('fechaExp')?.valid"
+                                [class.red-icon]="this.form.get('fechaExp')?.invalid && this.form.get('fechaExp')?.touched"></i>
+                            </span>
+                            <input type="text" formControlName="fechaExp" maxlength="5" class="form-control" placeholder="MM/YY">
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" id="">
+                                <i class="fa-solid fa-key" 
+                                [class.green-icon]="this.form.get('cvv')?.valid"
+                                [class.red-icon]="this.form.get('cvv')?.invalid && this.form.get('cvv')?.touched"></i>
+                            </span>
+                            <input type="password" formControlName="cvv" maxlength="3" class="form-control" placeholder="CVV">
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                        <button class="btn btn-success" [disabled]="this.form.invalid" type="submit">
+                            <i class="fas fa-database"></i>&nbsp;Registrar
+                        </button>
+                </div>
+                
+            </form>
+    </div>
+</div>
